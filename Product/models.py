@@ -30,9 +30,6 @@ class Product(models.Model):
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    manufactured_at = models.CharField(
-        max_length=100, verbose_name="Дата производства продукта", blank=True, null=True
-    )
 
     class Meta:
         verbose_name = "Продукт"
