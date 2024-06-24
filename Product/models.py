@@ -27,7 +27,7 @@ class Product(models.Model):
         blank=True,
         related_name="Product",
     )
-    price = models.IntegerField()
+    price = models.IntegerField(verbose_name="Цена")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -1,15 +1,30 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from Product.models import Product
 
 
-def product_list(request):
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, 'product/product_list.html', context)
+class ProductListView(ListView):
+    model = Product
 
 
-def single_product(request, pk):
-    product = Product.objects.get(pk=pk)
-    context = {"product": product}
-    return render(request, 'product/single_product.html', context)
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ("name", "description", "price", "category", "photo")
+    success_url = reverse_lazy("Product:product_list")
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ("name", "description", "price", "category", "photo")
+    success_url = reverse_lazy("Product:product_list")
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy("Product:product_list")
