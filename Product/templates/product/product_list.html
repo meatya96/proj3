@@ -10,6 +10,13 @@
             </div>
             <div class="card-body">
                 <h1 class="card-title pricing-card-title">{{ product.price }}$</h1>
+                <p class="card-text">
+                {% for version in product.versions.all %}
+                {% if version.is_version_active %}
+                <p>Версия: {{version.version_name}} ({{version.version_number}}) </p>
+                {% endif %}
+                {% endfor %}
+                </p>
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li>{{ product.description|slice:":100" }}</li>
                     <img src='{{ product.photo | media_filter}}'>
